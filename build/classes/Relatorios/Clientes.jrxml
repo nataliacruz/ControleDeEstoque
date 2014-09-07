@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e113f14e-cdf0-49fa-86d9-fcd705dad8c4">
+	<property name="template.type" value="columnar"/>
+	<property name="ireport.zoom" value="1.4641000000000033"/>
+	<property name="ireport.x" value="133"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     cliente.`codigo` AS cliente_codigo,
+     cliente.`nome` AS cliente_nome,
+     cliente.`nascimento` AS cliente_nascimento,
+     cliente.`cpf` AS cliente_cpf,
+     cliente.`rg` AS cliente_rg,
+     cliente.`email` AS cliente_email,
+     cliente.`telefone` AS cliente_telefone,
+     cliente.`foto` AS cliente_foto
+FROM
+     `cliente` cliente
+WHERE
+      excluido = 0 order by nome]]>
+	</queryString>
+	<field name="cliente_codigo" class="java.lang.Long"/>
+	<field name="cliente_nome" class="java.lang.String"/>
+	<field name="cliente_nascimento" class="java.lang.String"/>
+	<field name="cliente_cpf" class="java.lang.String"/>
+	<field name="cliente_rg" class="java.lang.String"/>
+	<field name="cliente_email" class="java.lang.String"/>
+	<field name="cliente_telefone" class="java.lang.String"/>
+	<field name="cliente_foto" class="java.lang.String"/>
+	<group name="cliente_nome">
+		<groupExpression><![CDATA[$F{cliente_nome}]]></groupExpression>
+		<groupHeader>
+			<band height="36">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="7" width="555" height="24" forecolor="#B89F7D" backcolor="#9DB1B8" uuid="4482608f-88db-42ff-9912-d02ae4e04300"/>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="1" width="479" height="23" forecolor="#FFFFFF" uuid="99a54ce9-385c-454c-8e29-84a7667b65c6"/>
+						<textElement>
+							<font fontName="Nirmala UI" size="16" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{cliente_nome}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="13">
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="2" y="0" width="551" height="1" uuid="83172f6b-a1c0-4c52-bdc0-c1150434a67c"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="122" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="118" y="0" width="435" height="93" uuid="c9d76f5f-962b-4126-a5e8-db24310b2b96"/>
+				<textElement>
+					<font fontName="Nirmala UI" size="66" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Clientes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="336" y="93" width="217" height="29" uuid="7e32bcd4-ce4c-4747-b442-76d1da2cf875"/>
+				<textElement>
+					<font fontName="Nirmala UI" size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Relação de clientes]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="118" height="122" uuid="2314453b-199b-4d7a-9fe8-17ae2c0a1f16"/>
+				<imageExpression><![CDATA["C:/ControleDeEstoque/Imagens/CabeçalhoRelatorio.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="106" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="120" height="20" forecolor="#000000" uuid="16577146-331f-4a17-8b9f-b4b1da6faa1f"/>
+				<textElement textAlignment="Right">
+					<font fontName="Nirmala UI" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Código do cliente]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="132" y="0" width="278" height="20" uuid="2a1434ff-a648-436f-b751-16c3153ed8cb"/>
+				<textElement>
+					<font fontName="Nirmala UI" size="10" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_codigo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="20" width="120" height="20" forecolor="#000000" uuid="be8aeda2-b07a-4257-9ef9-2da87727e6a7"/>
+				<textElement textAlignment="Right">
+					<font fontName="Nirmala UI" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Data de nascimento]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="132" y="20" width="278" height="20" uuid="bda1b39f-545d-4924-a886-80dc5ab662c8"/>
+				<textElement>
+					<font fontName="Nirmala UI" size="10" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_nascimento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="40" width="120" height="20" forecolor="#000000" uuid="e54813ce-0875-4979-aff6-3aa71f63b9a7"/>
+				<textElement textAlignment="Right">
+					<font fontName="Nirmala UI" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CPF do cliente]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="132" y="40" width="278" height="20" uuid="f69d6cdd-2f56-4271-be21-a368f6e38560"/>
+				<textElement>
+					<font fontName="Nirmala UI" size="10" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_cpf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="-2" y="60" width="120" height="20" forecolor="#000000" uuid="2251eaee-9f18-4cce-87c4-b10e42cb64d1"/>
+				<textElement textAlignment="Right">
+					<font fontName="Nirmala UI" isBold="false"/>
+				</textElement>
+				<text><![CDATA[E-mail do cliente]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="132" y="60" width="278" height="20" uuid="48bda449-9848-4767-bed1-f30585df14bd"/>
+				<textElement>
+					<font fontName="Nirmala UI" size="10" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="-2" y="80" width="120" height="20" forecolor="#000000" uuid="034e5004-ce11-4198-b44c-1acde42a177c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Nirmala UI" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Telefone do cliente]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="132" y="80" width="278" height="20" uuid="94fcd467-e54d-488b-83a0-dec363d5ddee"/>
+				<textElement>
+					<font fontName="Nirmala UI" size="10" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_telefone}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement positionType="Float" mode="Transparent" x="435" y="0" width="120" height="100" uuid="79b4c40b-8e46-4795-8a2c-49495ed20170"/>
+				<imageExpression><![CDATA[$F{cliente_foto}.toString()]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="12" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="aaa728d3-3e14-4517-a773-727b14f1cd5d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#9DB1B8" uuid="38e31213-c2bc-4de0-be2d-d65e981f63f8"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="13" forecolor="#FFFFFF" uuid="0feb017a-fde1-44ea-b123-05c909d04d27"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Nirmala UI" size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="13" forecolor="#FFFFFF" uuid="a0ee65c7-2a39-4e04-91fa-a267069bd242"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Nirmala UI" size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="13" forecolor="#FFFFFF" uuid="4ef06af7-bbdd-48b2-bdcf-5a1d5bb4e2c2"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Nirmala UI" size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
